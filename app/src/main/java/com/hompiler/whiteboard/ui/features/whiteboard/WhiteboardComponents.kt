@@ -1,17 +1,20 @@
 package com.hompiler.whiteboard.ui.features.whiteboard
 
+import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
-import com.hompiler.whiteboard.R
-import com.hompiler.whiteboard.models.DrawingTool
 
 
 @Composable
-fun Whiteboard() {
+fun Whiteboard(viewModel: WhiteboardViewModel) {
+
+
+    val selectedTool = viewModel.selectedTool.value
+
 
     ConstraintLayout(
         modifier = Modifier
@@ -22,7 +25,7 @@ fun Whiteboard() {
 
 
         WhiteboardCanvas(
-//            selectedTool = selectedTool,
+            selectedTool = selectedTool,
             modifier = Modifier
                 .constrainAs(canvas) {
                     top.linkTo(parent.top)
@@ -33,6 +36,9 @@ fun Whiteboard() {
         )
 
         ToolsToolbar(
+            tools = viewModel.tools,
+            selectedTool = selectedTool,
+            onToolSelect = { viewModel.selectedTool.value = it },
             modifier = Modifier
                 .constrainAs(toolbar) {
                     top.linkTo(parent.top, margin = 16.dp)
@@ -46,5 +52,5 @@ fun Whiteboard() {
 @Preview(showSystemUi = true)
 @Composable
 fun WhiteboardPreview() {
-    Whiteboard()
+//    Whiteboard()
 }

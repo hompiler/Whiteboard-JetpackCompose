@@ -1,5 +1,6 @@
 package com.hompiler.whiteboard.ui.features.whiteboard
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -16,7 +17,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.hompiler.whiteboard.R
 import com.hompiler.whiteboard.models.DrawingTool
 import com.hompiler.whiteboard.ui.theme.Selected
 
@@ -47,45 +47,13 @@ fun ToolbarButton(
 
 @Composable
 fun ToolsToolbar(
-//    selectedTool: DrawingTool,
-//    tools: List<DrawingTool>,
-//    onToolSelect: (DrawingTool) -> Unit,
+    selectedTool: DrawingTool,
+    tools: List<DrawingTool>,
+    onToolSelect: (DrawingTool) -> Unit,
     modifier: Modifier = Modifier
 ) {
 
-    var tools by remember {
-        mutableStateOf(
-            listOf(
-                DrawingTool(
-                    iconResource = R.drawable.ic_pen_outline,
-                    contentDescription = "Pencil",
-                ),
-                DrawingTool(
-                    iconResource = R.drawable.ic_arrow_outline,
-                    contentDescription = "Arrow",
-                ),
-                DrawingTool(
-                    iconResource = R.drawable.ic_square_outline,
-                    contentDescription = "Square",
-                ),
-                DrawingTool(
-                    iconResource = R.drawable.ic_circle_outline,
-                    contentDescription = "Circle",
-                ),
-                DrawingTool(
-                    iconResource = R.drawable.ic_color_outline,
-                    contentDescription = "Colors",
-                )
-            )
-        )
-    }
-
-    var selectedTool by remember {
-        mutableStateOf(
-            tools[0]
-        )
-    }
-
+    Log.wtf("HEHE TOOL", selectedTool.toString())
     Surface(
         color = MaterialTheme.colors.surface,
         modifier = modifier
@@ -97,7 +65,7 @@ fun ToolsToolbar(
                 ToolbarButton(
                     selected = tool == selectedTool,
                     tool = tool,
-                    onToolSelect = {selectedTool = it},
+                    onToolSelect = onToolSelect,
                 )
             }
         }
@@ -108,37 +76,5 @@ fun ToolsToolbar(
 @Preview
 @Composable
 fun ToolbarPreview() {
-    var tools by remember {
-        mutableStateOf(
-            listOf(
-                DrawingTool(
-                    iconResource = R.drawable.ic_pen_outline,
-                    contentDescription = "Pencil",
-                ),
-                DrawingTool(
-                    iconResource = R.drawable.ic_arrow_outline,
-                    contentDescription = "Arrow",
-                ),
-                DrawingTool(
-                    iconResource = R.drawable.ic_square_outline,
-                    contentDescription = "Square",
-                ),
-                DrawingTool(
-                    iconResource = R.drawable.ic_circle_outline,
-                    contentDescription = "Circle",
-                ),
-                DrawingTool(
-                    iconResource = R.drawable.ic_color_outline,
-                    contentDescription = "Colors",
-                )
-            )
-        )
-    }
-
-    var selectedTool by remember {
-        mutableStateOf(
-            tools[0]
-        )
-    }
 //    ToolsToolbar(tools = tools, selectedTool = selectedTool, {},)
 }
