@@ -1,23 +1,33 @@
 package com.hompiler.whiteboard.ui.features.whiteboard
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import com.hompiler.whiteboard.R
 import com.hompiler.whiteboard.models.*
 
 class WhiteboardViewModel() : ViewModel() {
 
+    var colors = mutableStateListOf(
+        Color.Red,
+        Color(0xFF007F00),
+        Color(0xFF0078DE),
+        Color.Black,
+    )
+        private set
+
+    var selectedColor =
+        mutableStateOf(
+            colors.last()
+        )
+
     var tools = mutableStateListOf(
         DrawingTool(
             iconResource = R.drawable.ic_pen_outline,
             contentDescription = "Pencil",
             use = {
-                Pencil(
-                    startOffset = it,
-                )
+                Pencil(color = selectedColor.value)
             }
         ),
         DrawingTool(
@@ -26,6 +36,7 @@ class WhiteboardViewModel() : ViewModel() {
             use = {
                 Arrow(
                     startOffset = it,
+                    color = selectedColor.value
                 )
             }
         ),
@@ -35,27 +46,21 @@ class WhiteboardViewModel() : ViewModel() {
             use = {
                 Rectangle(
                     startOffset = it,
+                    color = selectedColor.value
                 )
             }
         ),
         DrawingTool(
             iconResource = R.drawable.ic_circle_outline,
-            contentDescription = "Circle",
+            contentDescription = "Ellipse",
             use = {
                 Ellipse(
                     startOffset = it,
+                    color = selectedColor.value
                 )
             }
         ),
-        DrawingTool(
-            iconResource = R.drawable.ic_color_outline,
-            contentDescription = "Colors",
-            use = {
-                Ellipse(
-                    startOffset = it,
-                )
-            }
-        ),
+
     )
         private set
 
@@ -63,5 +68,17 @@ class WhiteboardViewModel() : ViewModel() {
     mutableStateOf(
         tools[0]
     )
+
+    var drawings =
+        mutableStateOf(
+            mutableListOf<Drawable>()
+        )
+
+
+    fun addDrawing(startOffset: Offset) {
+        drawings.value.add(selectedTool.value.use(startOffset))
+    }
+
+
 
 }
