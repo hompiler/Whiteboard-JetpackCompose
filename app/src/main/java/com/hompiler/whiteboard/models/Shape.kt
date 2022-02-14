@@ -106,10 +106,6 @@ class Pencil(
     override var color: Color = Color.Black
 ): Drawable {
 
-    fun addPoint() {
-//        points.value
-    }
-
     override var draw: DrawScope.() -> Unit = {
         drawPath(
             path = Path().apply {

@@ -8,15 +8,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 private val DarkColorPalette = darkColors(
-    primary = Purple200,
-    primaryVariant = Purple700,
-    secondary = Teal200
+    primary = Orange200,
+    primaryVariant = Orange700,
+    secondary = Petrol
 )
 
 private val LightColorPalette = lightColors(
-    primary = Purple500,
-    primaryVariant = Purple700,
-    secondary = Teal200,
+    primary = Orange500,
+    primaryVariant = Orange700,
+    secondary = Petrol,
 
     background = Color.White,
     surface = Color(0xFFF4F4F4),
@@ -26,7 +26,7 @@ private val LightColorPalette = lightColors(
     onSurface = Color.Black,
 
 
-)
+    )
 
 @Composable
 fun WhiteboardTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable() () -> Unit) {
@@ -40,6 +40,6 @@ fun WhiteboardTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Compos
         colors = colors,
         typography = Typography,
         shapes = Shapes,
-        content = content
+        content = content,
     )
 }

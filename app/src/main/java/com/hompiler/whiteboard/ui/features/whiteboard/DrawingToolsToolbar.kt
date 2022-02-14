@@ -52,6 +52,7 @@ fun DrawingToolbarButton(
             painterResource(tool.iconResource),
             tool.contentDescription,
             tint = MaterialTheme.colors.onSurface,
+            modifier = Modifier.clip(RoundedCornerShape(5.dp))
         )
     }
 
@@ -67,6 +68,7 @@ fun DrawingToolsToolbar(
 ) {
 
     CommonRow(modifier) {
+
         for (tool in tools) {
             DrawingToolbarButton(
                 selected = tool == selectedTool,
@@ -79,9 +81,3 @@ fun DrawingToolsToolbar(
     }
 }
 
-
-@Preview
-@Composable
-fun ToolbarPreview() {
-//    ToolsToolbar(tools = tools, selectedTool = selectedTool, {},)
-}

@@ -3,10 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Projects/android/Whiteboard/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.185" />
+        <entry key="..\:/Projects/android/Whiteboard/app/src/main/res/drawable-v24/outline_draw_24.xml" value="0.185" />
         <entry key="..\:/Projects/android/Whiteboard/app/src/main/res/drawable/ic_arrow_outline.xml" value="0.21666666666666667" />
         <entry key="..\:/Projects/android/Whiteboard/app/src/main/res/drawable/outline_border_color_24.xml" value="0.1" />
         <entry key="..\:/Projects/android/Whiteboard/app/src/main/res/drawable/outline_check_box_outline_blank_24.xml" value="0.2526041666666667" />
         <entry key="..\:/Projects/android/Whiteboard/app/src/main/res/drawable/outline_north_east_24.xml" value="0.2526041666666667" />
+        <entry key="..\:/Projects/android/Whiteboard/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.185" />
       </map>
     </option>
   </component>

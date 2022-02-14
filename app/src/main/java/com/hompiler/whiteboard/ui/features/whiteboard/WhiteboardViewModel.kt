@@ -1,6 +1,7 @@
 package com.hompiler.whiteboard.ui.features.whiteboard
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
@@ -13,14 +14,16 @@ class WhiteboardViewModel() : ViewModel() {
         Color.Red,
         Color(0xFF007F00),
         Color(0xFF0078DE),
+        Color.Yellow,
+        Color.Magenta,
+        Color(0xFFFFAC40),
         Color.Black,
     )
         private set
 
-    var selectedColor =
-        mutableStateOf(
-            colors.last()
-        )
+    var selectedColor = mutableStateOf(
+        colors.last()
+    )
 
     var tools = mutableStateListOf(
         DrawingTool(
@@ -60,25 +63,37 @@ class WhiteboardViewModel() : ViewModel() {
                 )
             }
         ),
-
     )
         private set
 
     var selectedTool =
-    mutableStateOf(
-        tools[0]
-    )
-
-    var drawings =
         mutableStateOf(
-            mutableListOf<Drawable>()
+            tools[0]
         )
 
+    var drawings = mutableStateOf(
+        mutableListOf<Drawable>()
+    )
+        private set
 
-    fun addDrawing(startOffset: Offset) {
+
+    fun addDrawable(startOffset: Offset) {
         drawings.value.add(selectedTool.value.use(startOffset))
     }
 
 
+    fun updateDrawable(endOffset: Offset) {
+        if (drawings.value.last() is Pencil) {
+            (drawings.value[drawings.value.lastIndex] as Pencil).points.value.add(endOffset)
+        }
+
+        if (drawings.value.last() is Shape) {
+            (drawings.value[drawings.value.lastIndex] as Shape).endOffsetState.value = endOffset
+        }
+    }
+
+    fun clearCanvas() {
+        drawings.value = mutableListOf()
+    }
 
 }
