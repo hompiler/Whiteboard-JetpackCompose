@@ -84,14 +84,24 @@ class Arrow(
             lineTo(endOffsetState.value.x, endOffsetState.value.y)
             close()
 
-            var xDir = if (startOffset.y - endOffsetState.value.y > 0) endOffsetState.value.y + 50
-            else endOffsetState.value.y - 50
+            var xDiff = startOffset.x - endOffsetState.value.x
+            var xDir = when {
+                xDiff > 0 -> 3
+                xDiff < 0 -> -3
+                else -> 0
+            }
 
-            moveTo(endOffsetState.value.x, endOffsetState.value.y)
-            lineTo(endOffsetState.value.x + 50, xDir)
-            close()
-            moveTo(endOffsetState.value.x, endOffsetState.value.y)
-            lineTo(endOffsetState.value.x - 50, xDir)
+
+            if (startOffset.y - endOffsetState.value.y > 0) {
+                moveTo(endOffsetState.value.x, endOffsetState.value.y - 10)
+                lineTo(endOffsetState.value.x + 10 + xDir, endOffsetState.value.y + 10)
+                lineTo(endOffsetState.value.x - 10 + xDir, endOffsetState.value.y + 10)
+            } else {
+                moveTo(endOffsetState.value.x, endOffsetState.value.y + 10)
+                lineTo(endOffsetState.value.x + 10+ xDir, endOffsetState.value.y - 10)
+                lineTo(endOffsetState.value.x - 10+ xDir, endOffsetState.value.y - 10)
+            }
+
 
             close()
         }
@@ -104,7 +114,7 @@ class Arrow(
 class Pencil(
     var points: MutableState<MutableList<Offset>> = mutableStateOf(mutableListOf()),
     override var color: Color = Color.Black
-): Drawable {
+) : Drawable {
 
     override var draw: DrawScope.() -> Unit = {
         drawPath(
