@@ -13,6 +13,7 @@ import kotlin.math.atan2
 import kotlin.math.cos
 import kotlin.math.sin
 
+
 abstract class Shape(
     private val startOffset: Offset,
     endOffset: Offset = startOffset,
