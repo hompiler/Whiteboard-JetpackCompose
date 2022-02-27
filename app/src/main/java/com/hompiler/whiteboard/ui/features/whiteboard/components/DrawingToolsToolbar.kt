@@ -1,18 +1,22 @@
 package com.hompiler.whiteboard.ui.features.whiteboard
 
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.hompiler.whiteboard.models.DrawingTool
-import com.hompiler.whiteboard.ui.theme.Selected
 
 @Composable
 fun ToolbarButton(
@@ -21,15 +25,29 @@ fun ToolbarButton(
     IconComposable: @Composable () -> Unit,
 ) {
 
+    val backgroundColor by animateColorAsState(
+        if (active) Color.LightGray
+        else Color.Transparent
+    )
+
+    val clipSize by animateDpAsState(
+        if (active) 10.dp
+        else 50.dp
+    )
+
+    val alphaValue by animateFloatAsState(
+        if(active) 1f else 0.7f
+    )
+
     val commonModifier = Modifier
-        .clip(RoundedCornerShape(10.dp))
         .padding(10.dp, 0.dp)
+        .clip(RoundedCornerShape(clipSize))
+        .background(backgroundColor)
+        .alpha(alphaValue)
 
 
     CommonRowButton(
         commonModifier = commonModifier,
-        activeModifier = commonModifier.clip(RoundedCornerShape(10.dp)).background(Selected),
-        active = active,
         onClick = onClick
     ) {
         IconComposable()

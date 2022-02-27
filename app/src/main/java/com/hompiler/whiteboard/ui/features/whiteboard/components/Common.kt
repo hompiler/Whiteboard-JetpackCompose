@@ -2,12 +2,9 @@ package com.hompiler.whiteboard.ui.features.whiteboard
 
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -20,17 +17,17 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun CommonRowButton(
     commonModifier: Modifier = Modifier,
-    activeModifier: Modifier = commonModifier,
-    active: Boolean = false,
     onClick: () -> Unit,
     Icon: @Composable () -> Unit,
 ) {
 
 
     IconButton(
-        modifier = if (active) activeModifier else commonModifier.alpha(0.7f),
-        onClick = onClick
-    ) {
+        modifier =
+        commonModifier,
+        onClick = onClick,
+
+        ) {
         Icon()
     }
 }

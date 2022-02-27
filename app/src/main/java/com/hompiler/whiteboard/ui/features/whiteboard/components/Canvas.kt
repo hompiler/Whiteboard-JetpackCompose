@@ -17,6 +17,7 @@ import androidx.compose.ui.input.pointer.consumePositionChange
 import androidx.compose.ui.input.pointer.pointerInput
 import com.hompiler.whiteboard.models.Drawable
 import com.hompiler.whiteboard.models.DrawingTool
+import kotlin.math.abs
 
 
 @Composable
@@ -41,10 +42,11 @@ fun WhiteboardCanvas(
                     // ACTION_DOWN
                     val down = awaitFirstDown()
                     startOffset = down.position
+
                     addDrawable(startOffset)
-
-
                     do {
+
+
 
                         // ACTION_MOVE
                         val event: PointerEvent = awaitPointerEvent()
@@ -57,7 +59,8 @@ fun WhiteboardCanvas(
                     } while (event.changes.any { it.pressed })
 
                     // ACTION_UP
-                    Log.wtf("UP", "${drawings.last()}")
+
+
                 }
             }
         }

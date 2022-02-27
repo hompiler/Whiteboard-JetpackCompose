@@ -27,8 +27,6 @@ fun ColorButton(
 
     CommonRowButton(
         commonModifier = commonModifier,
-        activeModifier = commonModifier,
-        active = selected,
         onClick = { onColorSelect(color) }
     ) {
         Icon(

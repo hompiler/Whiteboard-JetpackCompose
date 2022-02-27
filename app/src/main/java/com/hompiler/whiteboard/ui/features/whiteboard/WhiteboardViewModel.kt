@@ -1,5 +1,6 @@
 package com.hompiler.whiteboard.ui.features.whiteboard
 
+import android.util.Log
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.geometry.Offset
@@ -91,6 +92,8 @@ class WhiteboardViewModel() : ViewModel() {
             (drawings.value[drawings.value.lastIndex] as Shape).endOffsetState.value = endOffset
         }
     }
+
+
 
     fun clearCanvas() {
         drawings.value = mutableListOf()
